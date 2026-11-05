@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "Articles A An The",
     "Demra Dhaka"
   ],
-  authors: [{ name: "Riffat Sultana" }],
+  authors: [{ name: "Riffat Nasrin" }],
   icons: {
     icon: '/images/logo.png',
     apple: '/images/logo.png',

@@ -167,7 +167,7 @@ export async function GET(
   });
 
   // Instructor Signature Area (Right side)
-  const signatoryName = cert.template?.signatoryName || "Riffat Sultana";
+  const signatoryName = cert.template?.signatoryName || "Riffat Nasrin";
   const signatoryTitle = cert.template?.signatoryTitle || "Founder & Lead English Instructor";
 
   page.drawLine({

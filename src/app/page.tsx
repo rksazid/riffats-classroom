@@ -503,7 +503,7 @@ export default async function HomePage() {
               <div className="relative w-52 h-52 rounded-3xl overflow-hidden ring-4 ring-pink-500/20 shadow-md">
                 <Image
                   src="/images/logo.png"
-                  alt="Teacher Riffat Sultana"
+                  alt="Teacher Riffat Nasrin"
                   width={208}
                   height={208}
                   className="object-cover"
@@ -516,10 +516,10 @@ export default async function HomePage() {
                 Founder & Instructor
               </div>
               <h2 className="text-3xl font-black text-slate-900">
-                Meet Teacher Riffat Sultana
+                Meet Teacher Riffat Nasrin
               </h2>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Having taught English at Hajee Moajjem Ali High School in Demra, Dhaka, Riffat Sultana founded Riffat&apos;s Classroom to make English grammar intuitive, approachable, and truly joyful for young learners across Bangladesh.
+                Having taught English at Hajee Moajjem Ali High School in Demra, Dhaka, Riffat Nasrin founded Riffat&apos;s Classroom to make English grammar intuitive, approachable, and truly joyful for young learners across Bangladesh.
               </p>
               <p className="text-slate-600 text-sm leading-relaxed">
                 Her teaching methodology removes fear from grammar by breaking complex structures into bite-sized patterns, practical questions, and daily confidence-building exercises.

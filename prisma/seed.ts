@@ -48,8 +48,8 @@ async function main() {
   // Lead Teacher & Super Admin
   const teacherRiffat = await prisma.user.create({
     data: {
-      name: 'Riffat Sultana',
-      bengaliName: 'রিফাত সুলতানা',
+      name: 'Riffat Nasrin',
+      bengaliName: 'রিফাত নাসরিন',
       email: 'riffat@riffatsclassroom.com',
       image: '/images/logo.png',
       gradeLevel: 'Teacher / Lead Instructor',
@@ -241,7 +241,7 @@ async function main() {
       isPublished: true,
       publishedAt: new Date(),
       videoProvider: VideoProvider.YOUTUBE,
-      videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Standard embed format
+      videoUrl: 'https://www.youtube.com/watch?v=Pyik1Zsl95g', // Real video: Mastering Sentences by Riffat Nasrin
       thumbnailUrl: '/images/logo.png',
       content: `
         <h2>Welcome to Mastering Sentences!</h2>
@@ -292,7 +292,7 @@ async function main() {
       isPublished: true,
       publishedAt: new Date(),
       videoProvider: VideoProvider.YOUTUBE,
-      videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      videoUrl: 'https://www.youtube.com/watch?v=Pyik1Zsl95g', // Real video: Mastering Sentences & Objects
       thumbnailUrl: '/images/logo.png',
       content: `
         <h2>Direct vs. Indirect Objects</h2>
@@ -330,7 +330,7 @@ async function main() {
       isPublished: true,
       publishedAt: new Date(),
       videoProvider: VideoProvider.YOUTUBE,
-      videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      videoUrl: 'https://www.youtube.com/watch?v=V776c-b5ePk', // Real video: Mastering Articles by Riffat Nasrin
       thumbnailUrl: '/images/logo.png',
       content: `
         <h2>The Secret of Articles</h2>
@@ -349,23 +349,82 @@ async function main() {
 
   const lesson4 = await prisma.lesson.create({
     data: {
-      title: 'WH Questions vs. Yes/No Questions in Action',
+      title: 'Mastering Tag Questions in English',
       slug: 'wh-questions-vs-yes-no-questions',
-      summary: 'Master auxiliary verb inversion and question words to form accurate, confident questions in English.',
+      summary: 'Master English tag questions and sentence confirmations with lead teacher Riffat Nasrin.',
       gradeLevel: 'Class 6 - 9',
       difficulty: Difficulty.INTERMEDIATE,
       subjectId: englishSubject.id,
       topicId: topicQuestions.id,
-      teacherId: teacherTanvir.id,
+      teacherId: teacherRiffat.id,
       durationMinutes: 22,
       isPublished: true,
       publishedAt: new Date(),
       videoProvider: VideoProvider.YOUTUBE,
-      videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      videoUrl: 'https://www.youtube.com/watch?v=496ZHYATs1Y', // Real video: Mastering Tag Questions
       thumbnailUrl: '/images/logo.png',
       content: `
-        <h2>Mastering English Questions</h2>
-        <p>Questions in English fall into two major categories: Closed (Yes/No) and Open (WH-Questions).</p>
+        <h2>Mastering Tag Questions</h2>
+        <p>Tag questions turn a statement into a question to confirm information or invite agreement.</p>
+        <h3>General Principle:</h3>
+        <p>Positive sentence + Negative tag? ➔ <em>You are ready, aren't you?</em></p>
+        <p>Negative sentence + Positive tag? ➔ <em>She doesn't like milk, does she?</em></p>
+      `
+    }
+  });
+
+  const lesson5 = await prisma.lesson.create({
+    data: {
+      title: 'Mastering Right Form of Verbs for School Exams',
+      slug: 'mastering-right-form-of-verbs',
+      summary: 'Full comprehensive live class covering subject-verb agreement exceptions, tense rules, and exam practice.',
+      gradeLevel: 'Class 6 - 10',
+      difficulty: Difficulty.INTERMEDIATE,
+      subjectId: englishSubject.id,
+      topicId: topicPartsOfSpeech.id,
+      teacherId: teacherRiffat.id,
+      durationMinutes: 45,
+      isPublished: true,
+      publishedAt: new Date(),
+      videoProvider: VideoProvider.YOUTUBE,
+      videoUrl: 'https://www.youtube.com/watch?v=4v0FLP9K1hQ', // Real video: Right Form of Verbs LIVE
+      thumbnailUrl: '/images/logo.png',
+      content: `
+        <h2>Right Form of Verbs: Core Rules</h2>
+        <p>Choosing the correct verb form is one of the highest-scoring sections in Bangladeshi school examinations.</p>
+        <h3>Essential Checklist:</h3>
+        <ul>
+          <li>Identify the tense indicator (e.g. <em>yesterday, usually, right now, by tomorrow</em>).</li>
+          <li>Match singular subjects with singular verbs (e.g. <em>He goes</em> vs <em>They go</em>).</li>
+          <li>Handle conjunctions like <em>as well as, along with, neither...nor</em> accurately.</li>
+        </ul>
+      `
+    }
+  });
+
+  const lesson6 = await prisma.lesson.create({
+    data: {
+      title: 'Simile & Metaphor with Poem Practice',
+      slug: 'simile-and-metaphor-poem-practice',
+      summary: 'Distinguish between Simile and Metaphor in literature with poem practice from Wordsworth and Maya Angelou.',
+      gradeLevel: 'Class 7 - 10',
+      difficulty: Difficulty.ADVANCED,
+      subjectId: englishSubject.id,
+      topicId: topicSentence.id,
+      teacherId: teacherRiffat.id,
+      durationMinutes: 30,
+      isPublished: true,
+      publishedAt: new Date(),
+      videoProvider: VideoProvider.YOUTUBE,
+      videoUrl: 'https://www.youtube.com/watch?v=IbGsJRmb_WA', // Real video: Simile & Metaphor
+      thumbnailUrl: '/images/logo.png',
+      content: `
+        <h2>Simile vs. Metaphor</h2>
+        <p>Literary devices bring English writing and poetry to life.</p>
+        <ul>
+          <li><strong>Simile:</strong> A comparison using "like" or "as" (e.g. <em>"I wandered lonely as a cloud"</em>).</li>
+          <li><strong>Metaphor:</strong> A direct comparison stating one thing IS another (e.g. <em>"Time is a thief"</em>).</li>
+        </ul>
       `
     }
   });
@@ -387,7 +446,7 @@ async function main() {
     data: {
       title: 'Mastering English Sentences & Daily Grammar',
       slug: 'mastering-english-sentences',
-      description: 'The signature foundation course by Riffat Sultana. Master sentence building, direct and indirect objects, question forms, and grammatical accuracy for exams and communication.',
+      description: 'The signature foundation course by Riffat Nasrin. Master sentence building, direct and indirect objects, question forms, and grammatical accuracy for exams and communication.',
       gradeRange: 'Class 6 - Class 10',
       difficulty: Difficulty.BEGINNER,
       subjectId: englishSubject.id,
@@ -425,13 +484,31 @@ async function main() {
                 { lessonId: lesson4.id, orderIndex: 1, isMandatory: true }
               ]
             }
+          },
+          {
+            title: 'Module 4: Right Form of Verbs & Grammar Accuracy',
+            orderIndex: 4,
+            lessons: {
+              create: [
+                { lessonId: lesson5.id, orderIndex: 1, isMandatory: true }
+              ]
+            }
+          },
+          {
+            title: 'Module 5: Figures of Speech & Literary Devices',
+            orderIndex: 5,
+            lessons: {
+              create: [
+                { lessonId: lesson6.id, orderIndex: 1, isMandatory: true }
+              ]
+            }
           }
         ]
       },
       certificateTemplate: {
         create: {
           title: 'Certificate of Course Completion',
-          signatoryName: 'Riffat Sultana',
+          signatoryName: 'Riffat Nasrin',
           signatoryTitle: 'Founder & Lead English Instructor, Riffat\'s Classroom'
         }
       }

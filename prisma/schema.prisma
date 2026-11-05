@@ -596,7 +596,7 @@ model CertificateTemplate {
   courseId       String   @unique
   title          String
   signatureUrl   String?
-  signatoryName  String   @default("Riffat Sultana")
+  signatoryName  String   @default("Riffat Nasrin")
   signatoryTitle String   @default("Founder & Lead English Instructor")
   badgeUrl       String?
   createdAt      DateTime @default(now())

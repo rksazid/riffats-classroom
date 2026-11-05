@@ -14,6 +14,12 @@ export function getEmbedUrl(url: string, provider: string): string {
       return `https://www.youtube-nocookie.com/embed/${standardMatch[1]}`;
     }
 
+    // Handle youtube.com/shorts/ID
+    const shortsMatch = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/);
+    if (shortsMatch && shortsMatch[1]) {
+      return `https://www.youtube-nocookie.com/embed/${shortsMatch[1]}`;
+    }
+
     // Handle youtube.com/embed/ID
     const embedMatch = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
     if (embedMatch && embedMatch[1]) {

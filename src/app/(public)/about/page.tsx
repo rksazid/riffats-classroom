@@ -27,7 +27,7 @@ export default function AboutPage() {
             <div className="w-60 h-60 rounded-3xl overflow-hidden ring-4 ring-pink-500/20 shadow-lg">
               <Image
                 src="/images/logo.png"
-                alt="Teacher Riffat Sultana"
+                alt="Teacher Riffat Nasrin"
                 width={240}
                 height={240}
                 className="object-cover"
@@ -46,7 +46,7 @@ export default function AboutPage() {
             </h2>
 
             <p className="text-sm text-slate-600 leading-relaxed">
-              Riffat&apos;s Classroom was created by Riffat Sultana, an experienced English educator who formerly taught at <strong>Hajee Moajjem Ali High School</strong> in Demra, Dhaka.
+              Riffat&apos;s Classroom was created by Riffat Nasrin, an experienced English educator who formerly taught at <strong>Hajee Moajjem Ali High School</strong> in Demra, Dhaka.
             </p>
 
             <p className="text-sm text-slate-600 leading-relaxed">
