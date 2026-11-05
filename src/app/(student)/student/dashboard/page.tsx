@@ -61,15 +61,15 @@ export default async function StudentDashboardPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* 1. Header Banner */}
-        <div className="bg-gradient-to-r from-teal-900 via-teal-800 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+        <div className="bg-gradient-to-r from-teal-900 via-teal-800 to-slate-900 rounded-3xl p-5 sm:p-10 text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs font-bold uppercase tracking-wider">
               <span>{user.gradeLevel || 'Student Member'}</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black">
               Welcome back, {user.name}! 👋
             </h1>
-            <p className="text-sm sm:text-base text-slate-300 max-w-xl">
+            <p className="text-xs sm:text-sm md:text-base text-slate-300 max-w-xl">
               &ldquo;Little Lessons. Big Progress.&rdquo; Keep your daily habit going and tackle today&apos;s English grammar challenge.
             </p>
           </div>
@@ -80,80 +80,79 @@ export default async function StudentDashboardPage() {
         </div>
 
         {/* 2. Key Metric Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           
           {/* Daily Streak Card */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-pink-50 border border-pink-200 flex items-center justify-center text-pink-600 shrink-0">
-              <Sparkles className="w-7 h-7" />
+          <div className="bg-white p-3.5 sm:p-6 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4">
+            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-pink-50 border border-pink-200 flex items-center justify-center text-pink-600 shrink-0">
+              <Sparkles className="w-5 h-5 sm:w-7 sm:h-7" />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
                 Daily Streak
               </p>
-              <p className="text-2xl font-black text-slate-900">
-                {streak?.currentStreak || 0} <span className="text-xs font-semibold text-slate-500">Days</span>
+              <p className="text-xl sm:text-2xl font-black text-slate-900">
+                {streak?.currentStreak || 0} <span className="text-[10px] sm:text-xs font-semibold text-slate-500">Days</span>
               </p>
-              <p className="text-[11px] text-pink-600 font-semibold">
+              <p className="text-[10px] sm:text-[11px] text-pink-600 font-semibold truncate">
                 Best: {streak?.longestStreak || 0} days
               </p>
             </div>
           </div>
 
           {/* Challenges Completed */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-800 shrink-0">
-              <Award className="w-7 h-7 text-teal-700" />
+          <div className="bg-white p-3.5 sm:p-6 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4">
+            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-800 shrink-0">
+              <Award className="w-5 h-5 sm:w-7 sm:h-7 text-teal-700" />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
                 Challenges Solved
               </p>
-              <p className="text-2xl font-black text-slate-900">
+              <p className="text-xl sm:text-2xl font-black text-slate-900">
                 {streak?.totalChallengesCompleted || 0}
               </p>
-              <p className="text-[11px] text-teal-700 font-semibold">
+              <p className="text-[10px] sm:text-[11px] text-teal-700 font-semibold truncate">
                 Grammar mastery
               </p>
             </div>
           </div>
 
           {/* Enrolled Courses */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-700 shrink-0">
-              <BookOpen className="w-7 h-7" />
+          <div className="bg-white p-3.5 sm:p-6 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4">
+            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-700 shrink-0">
+              <BookOpen className="w-5 h-5 sm:w-7 sm:h-7" />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
                 Enrolled Courses
               </p>
-              <p className="text-2xl font-black text-slate-900">
+              <p className="text-xl sm:text-2xl font-black text-slate-900">
                 {enrollments.length}
               </p>
-              <p className="text-[11px] text-sky-700 font-semibold">
-                Active learning paths
+              <p className="text-[10px] sm:text-[11px] text-sky-700 font-semibold truncate">
+                Active paths
               </p>
             </div>
           </div>
 
           {/* Quizzes Taken */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shrink-0">
-              <CheckCircle2 className="w-7 h-7" />
+          <div className="bg-white p-3.5 sm:p-6 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4">
+            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shrink-0">
+              <CheckCircle2 className="w-5 h-5 sm:w-7 sm:h-7" />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                Assessments Done
+              <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
+                Completed Quizzes
               </p>
-              <p className="text-2xl font-black text-slate-900">
+              <p className="text-xl sm:text-2xl font-black text-slate-900">
                 {attempts.length}
               </p>
-              <p className="text-[11px] text-emerald-700 font-semibold">
-                Verified attempts
+              <p className="text-[10px] sm:text-[11px] text-emerald-700 font-semibold truncate">
+                Instant score
               </p>
             </div>
           </div>
-
         </div>
 
         {/* 3. Main Grid: Today's Challenge + Enrolled Courses */}

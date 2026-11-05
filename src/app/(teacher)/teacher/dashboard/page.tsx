@@ -13,12 +13,18 @@ import {
   ArrowRight,
   Settings,
   Layers,
-  Award
+  Award,
+  ShieldCheck,
+  BookmarkPlus
 } from 'lucide-react';
+import { Role } from '@prisma/client';
 import { formatDhakaDateOnly } from '@/lib/timezone';
 
 export default async function TeacherDashboardPage() {
   const teacher = await requireTeacher();
+  const isAdmin = teacher.roles.some((r) =>
+    ([Role.SUPER_ADMIN, Role.ADMIN] as Role[]).includes(r)
+  );
 
   // Query platform and instructor metrics
   const [
@@ -69,6 +75,15 @@ export default async function TeacherDashboardPage() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
+            {isAdmin && (
+              <Link
+                href="/admin/topics"
+                className="px-4 py-2.5 bg-pink-600 hover:bg-pink-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 shrink-0 whitespace-nowrap"
+              >
+                <BookmarkPlus className="w-4 h-4" />
+                <span>Manage Topics</span>
+              </Link>
+            )}
             <Link
               href="/teacher/lessons/new"
               className="px-4 py-2.5 bg-teal-800 hover:bg-teal-900 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 shrink-0 whitespace-nowrap"
@@ -78,11 +93,20 @@ export default async function TeacherDashboardPage() {
             </Link>
             <Link
               href="/teacher/question-bank"
-              className="px-4 py-2.5 bg-pink-600 hover:bg-pink-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 shrink-0 whitespace-nowrap"
+              className="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 shrink-0 whitespace-nowrap"
             >
               <HelpCircle className="w-4 h-4" />
               <span>Question Bank</span>
             </Link>
+            {isAdmin && (
+              <Link
+                href="/admin/dashboard"
+                className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 shrink-0 whitespace-nowrap"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>Admin Console</span>
+              </Link>
+            )}
           </div>
         </div>
 
@@ -134,7 +158,7 @@ export default async function TeacherDashboardPage() {
         </div>
 
         {/* 2. Management Navigation Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
           <Link
             href="/teacher/lessons"
             className="p-4 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:border-teal-300 card-hover-lift block"
@@ -163,8 +187,17 @@ export default async function TeacherDashboardPage() {
           </Link>
 
           <Link
+            href={isAdmin ? "/admin/topics" : "/lessons"}
+            className="p-4 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:border-pink-300 card-hover-lift block"
+          >
+            <BookmarkPlus className="w-6 h-6 text-pink-600 mb-2" />
+            <p className="text-sm font-bold text-slate-900">Grammar Topics</p>
+            <p className="text-[11px] text-slate-500">{isAdmin ? 'Add & edit syllabi' : 'Browse grammar topics'}</p>
+          </Link>
+
+          <Link
             href="/admin/daily-challenge"
-            className="p-4 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:border-amber-300 card-hover-lift block"
+            className="p-4 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:border-amber-300 card-hover-lift block col-span-2 sm:col-span-1"
           >
             <Sparkles className="w-6 h-6 text-amber-600 mb-2" />
             <p className="text-sm font-bold text-slate-900">Daily Challenges</p>

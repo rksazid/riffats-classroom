@@ -42,12 +42,12 @@ export default async function QuizzesCatalogPage() {
                 className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-xs flex flex-col justify-between card-hover-lift"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[11px] font-bold text-pink-600 uppercase tracking-wide">
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 mb-3">
+                    <span className="text-[10px] sm:text-[11px] font-bold text-pink-600 uppercase tracking-tight sm:tracking-wide whitespace-nowrap shrink-0">
                       {quiz.topic?.name || 'General English'}
                     </span>
                     {quiz.isDailyChallenge && (
-                      <span className="px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 text-[10px] font-extrabold flex items-center gap-1">
+                      <span className="px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 text-[9px] sm:text-[10px] font-extrabold flex items-center gap-1 whitespace-nowrap shrink-0">
                         <Sparkles className="w-3 h-3" />
                         Daily Challenge
                       </span>

@@ -23,6 +23,7 @@ export default async function AdminDashboardPage() {
     quizzesCount,
     attemptsCount,
     noticesCount,
+    topicsCount,
     settings,
   ] = await Promise.all([
     db.user.count(),
@@ -31,6 +32,7 @@ export default async function AdminDashboardPage() {
     db.quiz.count(),
     db.quizAttempt.count(),
     db.notice.count(),
+    db.topic.count(),
     db.siteSetting.findMany(),
   ]);
 
@@ -53,7 +55,14 @@ export default async function AdminDashboardPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/admin/topics"
+              className="px-4 py-2.5 bg-pink-600 hover:bg-pink-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>Manage Topics</span>
+            </Link>
             <Link
               href="/admin/site-settings"
               className="px-4 py-2.5 bg-teal-800 hover:bg-teal-900 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2"
@@ -65,40 +74,59 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Global Platform Metrics */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs">
-            <p className="text-xs font-bold text-slate-400 uppercase">Users</p>
-            <p className="text-2xl font-black text-slate-900 mt-1">{usersCount}</p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4">
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs">
+            <p className="text-[11px] font-bold text-slate-400 uppercase">Users</p>
+            <p className="text-xl sm:text-2xl font-black text-slate-900 mt-1">{usersCount}</p>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs">
-            <p className="text-xs font-bold text-slate-400 uppercase">Lessons</p>
-            <p className="text-2xl font-black text-teal-800 mt-1">{lessonsCount}</p>
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs">
+            <p className="text-[11px] font-bold text-slate-400 uppercase">Topics</p>
+            <p className="text-xl sm:text-2xl font-black text-pink-600 mt-1">{topicsCount}</p>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs">
-            <p className="text-xs font-bold text-slate-400 uppercase">Courses</p>
-            <p className="text-2xl font-black text-pink-600 mt-1">{coursesCount}</p>
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs">
+            <p className="text-[11px] font-bold text-slate-400 uppercase">Lessons</p>
+            <p className="text-xl sm:text-2xl font-black text-teal-800 mt-1">{lessonsCount}</p>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs">
-            <p className="text-xs font-bold text-slate-400 uppercase">Quizzes</p>
-            <p className="text-2xl font-black text-slate-900 mt-1">{quizzesCount}</p>
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs">
+            <p className="text-[11px] font-bold text-slate-400 uppercase">Courses</p>
+            <p className="text-xl sm:text-2xl font-black text-slate-900 mt-1">{coursesCount}</p>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs">
-            <p className="text-xs font-bold text-slate-400 uppercase">Attempts</p>
-            <p className="text-2xl font-black text-emerald-600 mt-1">{attemptsCount}</p>
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs">
+            <p className="text-[11px] font-bold text-slate-400 uppercase">Quizzes</p>
+            <p className="text-xl sm:text-2xl font-black text-slate-900 mt-1">{quizzesCount}</p>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs">
-            <p className="text-xs font-bold text-slate-400 uppercase">Notices</p>
-            <p className="text-2xl font-black text-slate-900 mt-1">{noticesCount}</p>
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs">
+            <p className="text-[11px] font-bold text-slate-400 uppercase">Attempts</p>
+            <p className="text-xl sm:text-2xl font-black text-emerald-600 mt-1">{attemptsCount}</p>
+          </div>
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs">
+            <p className="text-[11px] font-bold text-slate-400 uppercase">Notices</p>
+            <p className="text-xl sm:text-2xl font-black text-slate-900 mt-1">{noticesCount}</p>
           </div>
         </div>
 
         {/* Admin Navigation Panels */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <Link
-            href="/admin/daily-challenge"
-            className="p-6 bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:border-pink-300 card-hover-lift block space-y-3"
+            href="/admin/topics"
+            className="p-5 sm:p-6 bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:border-pink-300 card-hover-lift block space-y-3"
           >
             <div className="w-12 h-12 rounded-2xl bg-pink-50 border border-pink-200 flex items-center justify-center text-pink-600">
+              <BookOpen className="w-6 h-6" />
+            </div>
+            <h3 className="text-base font-extrabold text-slate-900">
+              Topics & Grammar Syllabi
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Dynamically add, edit, or reorder grammar topics and subtopics for lessons, questions, and daily quizzes.
+            </p>
+          </Link>
+
+          <Link
+            href="/admin/daily-challenge"
+            className="p-5 sm:p-6 bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:border-purple-300 card-hover-lift block space-y-3"
+          >
+            <div className="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-600">
               <Sparkles className="w-6 h-6" />
             </div>
             <h3 className="text-base font-extrabold text-slate-900">
@@ -111,7 +139,7 @@ export default async function AdminDashboardPage() {
 
           <Link
             href="/admin/site-settings"
-            className="p-6 bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:border-teal-300 card-hover-lift block space-y-3"
+            className="p-5 sm:p-6 bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:border-teal-300 card-hover-lift block space-y-3"
           >
             <div className="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-800">
               <Settings className="w-6 h-6" />
@@ -126,7 +154,7 @@ export default async function AdminDashboardPage() {
 
           <Link
             href="/admin/users"
-            className="p-6 bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:border-amber-300 card-hover-lift block space-y-3"
+            className="p-5 sm:p-6 bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:border-amber-300 card-hover-lift block space-y-3"
           >
             <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700">
               <Users className="w-6 h-6" />

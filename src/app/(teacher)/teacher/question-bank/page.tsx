@@ -24,12 +24,12 @@ export default async function TeacherQuestionBankPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 sm:p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm">
           <div>
-            <span className="text-xs font-bold text-pink-600 uppercase tracking-wider block">
+            <span className="text-[10px] sm:text-xs font-bold text-pink-600 uppercase tracking-wider block">
               Assessment Repository
             </span>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 mt-0.5 sm:mt-1">
               Central Question Bank ({questions.length})
             </h1>
             <p className="text-xs sm:text-sm text-slate-600">
@@ -39,7 +39,7 @@ export default async function TeacherQuestionBankPage() {
 
           <Link
             href="/teacher/question-bank/new"
-            className="px-5 py-2.5 bg-pink-600 hover:bg-pink-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 self-start sm:self-auto"
+            className="px-4 sm:px-5 py-2.5 bg-pink-600 hover:bg-pink-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 self-start sm:self-auto shrink-0 whitespace-nowrap"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Add Question</span>
@@ -51,30 +51,30 @@ export default async function TeacherQuestionBankPage() {
           {questions.map((q, idx) => (
             <div
               key={q.id}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs space-y-4"
+              className="bg-white rounded-3xl p-4 sm:p-6 sm:p-8 border border-slate-200/90 shadow-xs space-y-3.5 sm:space-y-4"
             >
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-slate-400">
+              <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 border-b border-slate-100 pb-2.5">
+                <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 min-w-0">
+                  <span className="text-[11px] font-black text-slate-400 shrink-0 mr-0.5">
                     #{idx + 1}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-md bg-pink-50 text-pink-700 text-[10px] font-extrabold uppercase">
+                  <span className="px-2 py-0.5 rounded-md bg-pink-50 text-pink-700 text-[9px] sm:text-[10px] font-bold tracking-tight uppercase whitespace-nowrap shrink-0">
                     {q.topic.name}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[10px] font-extrabold uppercase">
+                  <span className="px-1.5 sm:px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[9px] sm:text-[10px] font-bold tracking-tight uppercase whitespace-nowrap shrink-0">
                     {q.type.replace('_', ' ')}
                   </span>
-                  <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] font-bold">
+                  <span className="px-1.5 sm:px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[9px] sm:text-[10px] font-bold whitespace-nowrap shrink-0">
                     {q.gradeLevel}
                   </span>
                 </div>
 
-                <span className="text-xs font-bold text-slate-500">
+                <span className="text-[10px] sm:text-xs font-bold text-slate-500 whitespace-nowrap shrink-0 ml-auto sm:ml-0">
                   {q.points} {q.points === 1 ? 'Point' : 'Points'}
                 </span>
               </div>
 
-              <p className="text-base font-bold text-slate-900 leading-snug">
+              <p className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
                 {q.questionText}
               </p>
 

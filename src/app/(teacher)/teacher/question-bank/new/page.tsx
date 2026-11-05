@@ -3,6 +3,7 @@ import { db } from '@/lib/db';
 import Link from 'next/link';
 import { ArrowLeft, HelpCircle, Save } from 'lucide-react';
 import { createQuestionAction } from '@/features/questions/actions';
+import SearchableSelect from '@/components/ui/SearchableSelect';
 
 export default async function NewQuestionPage() {
   await requireTeacher();
@@ -41,52 +42,58 @@ export default async function NewQuestionPage() {
             {/* Topic & Type & Grade Level */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Grammar Topic
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                  Grammar Topic *
                 </label>
-                <select
+                <SearchableSelect
                   name="topicId"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pink-500 outline-hidden bg-white"
                   required
-                >
-                  {topics.map((t) => (
-                    <option key={t.id} value={t.id}>
-                      {t.name}
-                    </option>
-                  ))}
-                </select>
+                  placeholder="Select grammar topic..."
+                  searchPlaceholder="Search topic..."
+                  defaultValue={topics[0]?.id}
+                  options={topics.map((t) => ({
+                    value: t.id,
+                    label: t.name,
+                  }))}
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                   Question Format
                 </label>
-                <select
+                <SearchableSelect
                   name="type"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pink-500 outline-hidden bg-white"
-                >
-                  <option value="SINGLE_MCQ">Single Choice MCQ</option>
-                  <option value="MULTIPLE_MCQ">Multiple Choice MCQ</option>
-                  <option value="TRUE_FALSE">True / False</option>
-                  <option value="FILL_BLANK">Fill in the Blank</option>
-                  <option value="MATCHING">Matching Pairs</option>
-                </select>
+                  placeholder="Select format..."
+                  searchPlaceholder="Search formats..."
+                  defaultValue="SINGLE_MCQ"
+                  options={[
+                    { value: 'SINGLE_MCQ', label: 'Single Choice MCQ', badge: '1 Correct' },
+                    { value: 'MULTIPLE_MCQ', label: 'Multiple Choice MCQ', badge: 'Multi' },
+                    { value: 'TRUE_FALSE', label: 'True / False', badge: '2 Options' },
+                    { value: 'FILL_BLANK', label: 'Fill in the Blank', badge: 'Text' },
+                    { value: 'MATCHING', label: 'Matching Pairs', badge: 'Pairs' },
+                  ]}
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                   Grade / Level
                 </label>
-                <select
+                <SearchableSelect
                   name="gradeLevel"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pink-500 outline-hidden bg-white"
-                >
-                  <option value="Class 6">Class 6</option>
-                  <option value="Class 7">Class 7</option>
-                  <option value="Class 8">Class 8</option>
-                  <option value="Class 9 - 10">Class 9 - 10</option>
-                  <option value="All Levels">All Levels</option>
-                </select>
+                  placeholder="Select grade level..."
+                  searchPlaceholder="Filter grades..."
+                  defaultValue="Class 7"
+                  options={[
+                    { value: 'Class 6', label: 'Class 6' },
+                    { value: 'Class 7', label: 'Class 7' },
+                    { value: 'Class 8', label: 'Class 8' },
+                    { value: 'Class 9 - 10', label: 'Class 9 - 10' },
+                    { value: 'All Levels', label: 'All Levels (Foundation)' },
+                  ]}
+                />
               </div>
             </div>
 

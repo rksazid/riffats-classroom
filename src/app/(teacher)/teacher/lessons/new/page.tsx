@@ -3,6 +3,7 @@ import { db } from '@/lib/db';
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, Save, Video, Sparkles } from 'lucide-react';
 import { createLessonAction } from '@/features/lessons/actions';
+import SearchableSelect from '@/components/ui/SearchableSelect';
 
 export default async function NewLessonPage() {
   await requireTeacher();
@@ -68,50 +69,55 @@ export default async function NewLessonPage() {
             {/* Topic & Grade Level & Difficulty */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Grammar Topic
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                  Grammar Topic *
                 </label>
-                <select
+                <SearchableSelect
                   name="topicId"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pink-500 outline-hidden bg-white"
                   required
-                >
-                  {topics.map((t) => (
-                    <option key={t.id} value={t.id}>
-                      {t.name}
-                    </option>
-                  ))}
-                </select>
+                  placeholder="Select grammar topic..."
+                  searchPlaceholder="Search topic..."
+                  defaultValue={topics[0]?.id}
+                  options={topics.map((t) => ({
+                    value: t.id,
+                    label: t.name,
+                  }))}
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                   Target Grade Level
                 </label>
-                <select
+                <SearchableSelect
                   name="gradeLevel"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pink-500 outline-hidden bg-white"
-                >
-                  <option value="Class 6">Class 6</option>
-                  <option value="Class 7">Class 7</option>
-                  <option value="Class 8">Class 8</option>
-                  <option value="Class 9 - 10">Class 9 - 10</option>
-                  <option value="All Levels">All Levels</option>
-                </select>
+                  placeholder="Select grade level..."
+                  searchPlaceholder="Filter grades..."
+                  defaultValue="Class 6"
+                  options={[
+                    { value: 'Class 6', label: 'Class 6' },
+                    { value: 'Class 7', label: 'Class 7' },
+                    { value: 'Class 8', label: 'Class 8' },
+                    { value: 'Class 9 - 10', label: 'Class 9 - 10' },
+                    { value: 'All Levels', label: 'All Levels (Foundation)' },
+                  ]}
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                   Difficulty
                 </label>
-                <select
+                <SearchableSelect
                   name="difficulty"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pink-500 outline-hidden bg-white"
-                >
-                  <option value="BEGINNER">Beginner</option>
-                  <option value="INTERMEDIATE">Intermediate</option>
-                  <option value="ADVANCED">Advanced</option>
-                </select>
+                  placeholder="Select difficulty..."
+                  defaultValue="BEGINNER"
+                  options={[
+                    { value: 'BEGINNER', label: 'Beginner (Basic Rules)' },
+                    { value: 'INTERMEDIATE', label: 'Intermediate (Applied Grammar)' },
+                    { value: 'ADVANCED', label: 'Advanced (Exam Prep & Complex)' },
+                  ]}
+                />
               </div>
             </div>
 
@@ -124,14 +130,16 @@ export default async function NewLessonPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <select
+                  <SearchableSelect
                     name="videoProvider"
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pink-500 outline-hidden bg-white"
-                  >
-                    <option value="YOUTUBE">YouTube Embed</option>
-                    <option value="LOOM">Loom Embed</option>
-                    <option value="DIRECT">Direct Video URL</option>
-                  </select>
+                    placeholder="Provider..."
+                    defaultValue="YOUTUBE"
+                    options={[
+                      { value: 'YOUTUBE', label: 'YouTube Embed' },
+                      { value: 'LOOM', label: 'Loom Embed' },
+                      { value: 'DIRECT', label: 'Direct Video URL' },
+                    ]}
+                  />
                 </div>
 
                 <div className="sm:col-span-2">

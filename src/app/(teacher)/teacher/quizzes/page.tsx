@@ -49,15 +49,15 @@ export default async function TeacherQuizzesPage() {
             {quizzes.map((q) => (
               <div
                 key={q.id}
-                className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/70 transition-colors"
+                className="p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-slate-50/70 transition-colors"
               >
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-pink-50 text-pink-700">
+                <div className="space-y-1.5 min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                    <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-tight sm:tracking-wider px-2 py-0.5 rounded-md bg-pink-50 text-pink-700 whitespace-nowrap shrink-0">
                       {q.topic?.name || 'General English'}
                     </span>
                     <span
-                      className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md ${
+                      className={`text-[9px] sm:text-[10px] font-bold uppercase tracking-tight sm:tracking-wider px-2 py-0.5 rounded-md whitespace-nowrap shrink-0 ${
                         q.isPublished
                           ? 'bg-emerald-50 text-emerald-700'
                           : 'bg-amber-50 text-amber-700'
@@ -66,13 +66,13 @@ export default async function TeacherQuizzesPage() {
                       {q.isPublished ? 'Published' : 'Draft'}
                     </span>
                     {q.isDailyChallenge && (
-                      <span className="text-[10px] font-bold text-pink-600 uppercase">
+                      <span className="text-[9px] sm:text-[10px] font-bold text-pink-600 uppercase whitespace-nowrap shrink-0">
                         • Daily Challenge
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-base font-extrabold text-slate-900">
+                  <h3 className="text-sm sm:text-base font-extrabold text-slate-900 leading-snug">
                     {q.title}
                   </h3>
 

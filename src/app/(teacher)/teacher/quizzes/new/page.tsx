@@ -3,6 +3,7 @@ import { db } from '@/lib/db';
 import Link from 'next/link';
 import { ArrowLeft, Award, Save, Clock, CheckCircle2 } from 'lucide-react';
 import { createQuizAction } from '@/features/quizzes/actions';
+import SearchableSelect from '@/components/ui/SearchableSelect';
 
 export default async function NewQuizBuilderPage() {
   await requireTeacher();
@@ -73,24 +74,26 @@ export default async function NewQuizBuilderPage() {
             {/* Topic & Duration & Passing Score */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                   Grammar Topic
                 </label>
-                <select
+                <SearchableSelect
                   name="topicId"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pink-500 outline-hidden bg-white"
-                >
-                  <option value="">General English / Mixed</option>
-                  {topics.map((t) => (
-                    <option key={t.id} value={t.id}>
-                      {t.name}
-                    </option>
-                  ))}
-                </select>
+                  placeholder="General English / Mixed"
+                  searchPlaceholder="Search topic..."
+                  defaultValue=""
+                  options={[
+                    { value: '', label: 'General English / Mixed (All Topics)' },
+                    ...topics.map((t) => ({
+                      value: t.id,
+                      label: t.name,
+                    })),
+                  ]}
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                   Duration (Minutes, optional)
                 </label>
                 <input
@@ -103,7 +106,7 @@ export default async function NewQuizBuilderPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                   Passing Score (%)
                 </label>
                 <input

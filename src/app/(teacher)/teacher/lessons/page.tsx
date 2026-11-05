@@ -47,15 +47,15 @@ export default async function TeacherLessonsListPage() {
             {lessons.map((lesson) => (
               <div
                 key={lesson.id}
-                className="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/70 transition-colors"
+                className="p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-slate-50/70 transition-colors"
               >
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-pink-50 text-pink-700">
+                <div className="space-y-1.5 min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                    <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-tight sm:tracking-wider px-2 py-0.5 rounded-md bg-pink-50 text-pink-700 whitespace-nowrap shrink-0">
                       {lesson.topic.name}
                     </span>
                     <span
-                      className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md ${
+                      className={`text-[9px] sm:text-[10px] font-bold uppercase tracking-tight sm:tracking-wider px-2 py-0.5 rounded-md whitespace-nowrap shrink-0 ${
                         lesson.isPublished
                           ? 'bg-emerald-50 text-emerald-700'
                           : 'bg-amber-50 text-amber-700'
@@ -63,12 +63,12 @@ export default async function TeacherLessonsListPage() {
                     >
                       {lesson.isPublished ? 'Published' : 'Draft'}
                     </span>
-                    <span className="text-[11px] text-slate-400">
+                    <span className="text-[10px] sm:text-[11px] text-slate-400 whitespace-nowrap shrink-0">
                       {lesson.gradeLevel} • {formatDuration(lesson.durationMinutes)}
                     </span>
                   </div>
 
-                  <h3 className="text-base font-extrabold text-slate-900">
+                  <h3 className="text-sm sm:text-base font-extrabold text-slate-900 leading-snug">
                     {lesson.title}
                   </h3>
 

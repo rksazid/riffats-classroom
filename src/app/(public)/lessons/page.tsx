@@ -66,10 +66,10 @@ export default async function LessonsPage({ searchParams }: LessonsPageProps) {
         </div>
 
         {/* Filter Navigation */}
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-2">
           <Link
             href="/lessons"
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-colors whitespace-nowrap ${
               !topic
                 ? 'bg-teal-800 text-white shadow-xs'
                 : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
@@ -82,7 +82,7 @@ export default async function LessonsPage({ searchParams }: LessonsPageProps) {
             <Link
               key={t.id}
               href={`/lessons?topic=${t.slug}`}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-colors whitespace-nowrap ${
                 topic === t.slug
                   ? 'bg-teal-800 text-white shadow-xs'
                   : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
