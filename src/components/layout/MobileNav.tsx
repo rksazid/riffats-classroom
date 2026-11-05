@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -37,6 +37,23 @@ export default function MobileNav({ user, isTeacherOrAdmin }: MobileNavProps) {
   const toggle = () => setIsOpen((prev) => !prev);
   const close = () => setIsOpen(false);
 
+  // Close on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const navLinks = [
     { href: '/lessons', label: 'Lessons', icon: BookOpen },
     { href: '/courses', label: 'Courses', icon: Compass },
@@ -53,13 +70,13 @@ export default function MobileNav({ user, isTeacherOrAdmin }: MobileNavProps) {
   ];
 
   return (
-    <div className="lg:hidden flex items-center gap-2">
+    <div className="lg:hidden flex items-center">
       {/* Mobile Menu Hamburger Button */}
       <button
         type="button"
         onClick={toggle}
         aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-        className="p-2 rounded-xl text-slate-700 hover:text-teal-800 hover:bg-slate-100 transition-colors focus:outline-hidden focus:ring-2 focus:ring-teal-700"
+        className="p-2 -mr-1 rounded-xl text-slate-700 hover:text-teal-800 hover:bg-slate-100 transition-colors focus:outline-hidden focus:ring-2 focus:ring-teal-700"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
@@ -69,13 +86,49 @@ export default function MobileNav({ user, isTeacherOrAdmin }: MobileNavProps) {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 top-20 bg-slate-900/40 backdrop-blur-xs z-40 transition-opacity"
+            className="fixed inset-0 top-16 sm:top-20 bg-slate-900/50 backdrop-blur-xs z-40 transition-opacity"
             onClick={close}
             aria-hidden="true"
           />
 
           {/* Panel */}
-          <div className="fixed top-20 inset-x-0 bg-white border-b border-slate-200 shadow-2xl z-50 p-5 space-y-4 max-h-[calc(100vh-80px)] overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-150">
+          <div className="fixed top-16 sm:top-20 inset-x-0 bg-white border-b border-slate-200 shadow-2xl z-50 p-4 sm:p-6 space-y-4 max-h-[calc(100vh-64px)] sm:max-h-[calc(100vh-80px)] overflow-y-auto animate-in fade-in slide-in-from-top-3 duration-150">
+            {/* User Card (If Authenticated) */}
+            {user && (
+              <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-sm font-black text-slate-900 truncate">
+                    {user.name}
+                  </p>
+                  <p className="text-xs text-teal-700 font-semibold truncate">
+                    {user.gradeLevel || user.roles?.[0] || 'Member'}
+                  </p>
+                </div>
+                <form action={signOutAction} className="shrink-0">
+                  <button
+                    type="submit"
+                    onClick={close}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                  >
+                    <LogOut className="w-3.5 h-3.5" />
+                    <span>Sign Out</span>
+                  </button>
+                </form>
+              </div>
+            )}
+
+            {/* Portal Action for Authenticated User */}
+            {user && (
+              <Link
+                href={isTeacherOrAdmin ? '/teacher/dashboard' : '/student/dashboard'}
+                onClick={close}
+                className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl text-sm font-black text-white bg-teal-800 hover:bg-teal-900 transition-colors shadow-xs"
+              >
+                <LayoutDashboard className="w-4 h-4" />
+                <span>{isTeacherOrAdmin ? 'Teacher Portal' : 'My Student Dashboard'}</span>
+              </Link>
+            )}
+
             {/* Navigation Links */}
             <nav className="grid grid-cols-1 gap-1">
               {navLinks.map((link) => {
@@ -107,7 +160,7 @@ export default function MobileNav({ user, isTeacherOrAdmin }: MobileNavProps) {
                     <span className="whitespace-nowrap">{link.label}</span>
                     {link.highlight && (
                       <span className="ml-auto text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-pink-100 text-pink-700">
-                        New
+                        Daily
                       </span>
                     )}
                   </Link>
@@ -115,43 +168,9 @@ export default function MobileNav({ user, isTeacherOrAdmin }: MobileNavProps) {
               })}
             </nav>
 
-            <hr className="border-slate-100" />
-
-            {/* Mobile Auth Actions */}
-            {user ? (
-              <div className="space-y-3 pt-1">
-                <div className="p-3 bg-slate-50 rounded-2xl flex items-center justify-between">
-                  <div className="min-w-0">
-                    <p className="text-sm font-black text-slate-900 truncate">
-                      {user.name}
-                    </p>
-                    <p className="text-xs text-teal-700 font-medium truncate">
-                      {user.gradeLevel || user.roles[0]}
-                    </p>
-                  </div>
-                  <form action={signOutAction} className="shrink-0">
-                    <button
-                      type="submit"
-                      onClick={close}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
-                    >
-                      <LogOut className="w-3.5 h-3.5" />
-                      <span>Sign Out</span>
-                    </button>
-                  </form>
-                </div>
-
-                <Link
-                  href={isTeacherOrAdmin ? '/teacher/dashboard' : '/student/dashboard'}
-                  onClick={close}
-                  className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl text-sm font-black text-white bg-teal-800 hover:bg-teal-900 transition-colors shadow-sm"
-                >
-                  <LayoutDashboard className="w-4 h-4" />
-                  <span>{isTeacherOrAdmin ? 'Teacher Portal' : 'My Student Dashboard'}</span>
-                </Link>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-3 pt-1">
+            {/* Mobile Auth Actions (If Not Authenticated) */}
+            {!user && (
+              <div className="pt-2 border-t border-slate-100 grid grid-cols-2 gap-3">
                 <Link
                   href="/sign-in"
                   onClick={close}
@@ -163,7 +182,7 @@ export default function MobileNav({ user, isTeacherOrAdmin }: MobileNavProps) {
                 <Link
                   href="/daily-challenge"
                   onClick={close}
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-bold text-white bg-pink-600 hover:bg-pink-700 transition-colors shadow-sm"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-bold text-white bg-pink-600 hover:bg-pink-700 transition-colors shadow-xs"
                 >
                   <span>Start Learning</span>
                 </Link>

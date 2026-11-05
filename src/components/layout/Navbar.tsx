@@ -17,11 +17,11 @@ export default async function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
         
-        {/* 1. Brand Logo & Name (Guaranteed Never to Wrap) */}
-        <Link href="/" className="flex items-center gap-3 shrink-0 group">
-          <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-xs ring-2 ring-pink-500/25 group-hover:ring-pink-500 transition-all shrink-0 bg-teal-900 flex items-center justify-center">
+        {/* 1. Brand Logo & Name */}
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group">
+          <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-xs ring-2 ring-pink-500/25 group-hover:ring-pink-500 transition-all shrink-0 bg-teal-900 flex items-center justify-center">
             <Image
               src="/images/logo.png"
               alt="Riffat's Classroom Logo"
@@ -35,7 +35,7 @@ export default async function Navbar() {
             <span className="font-black text-base sm:text-lg xl:text-xl tracking-tight text-slate-900 group-hover:text-teal-800 transition-colors whitespace-nowrap">
               Riffat&apos;s <span className="text-pink-600">Classroom</span>
             </span>
-            <span className="text-[10px] font-bold text-teal-700 tracking-wider uppercase whitespace-nowrap">
+            <span className="hidden sm:inline-block text-[10px] font-bold text-teal-700 tracking-wider uppercase whitespace-nowrap">
               English Learning LMS
             </span>
           </div>
@@ -92,10 +92,21 @@ export default async function Navbar() {
         {/* 3. User Session Actions & Mobile Hamburger */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {user ? (
-            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+              {/* Compact icon button for mobile (< sm) */}
               <Link
                 href={isTeacherOrAdmin ? '/teacher/dashboard' : '/student/dashboard'}
-                className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-bold text-white bg-teal-800 hover:bg-teal-900 rounded-xl shadow-xs transition-colors shrink-0 whitespace-nowrap"
+                className="sm:hidden p-2 text-white bg-teal-800 hover:bg-teal-900 rounded-xl shadow-xs transition-colors shrink-0"
+                title={isTeacherOrAdmin ? 'Teacher Portal' : 'My Dashboard'}
+                aria-label={isTeacherOrAdmin ? 'Teacher Portal' : 'My Dashboard'}
+              >
+                <LayoutDashboard className="w-4 h-4" />
+              </Link>
+
+              {/* Full button on tablet and desktop (>= sm) */}
+              <Link
+                href={isTeacherOrAdmin ? '/teacher/dashboard' : '/student/dashboard'}
+                className="hidden sm:flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-bold text-white bg-teal-800 hover:bg-teal-900 rounded-xl shadow-xs transition-colors shrink-0 whitespace-nowrap"
               >
                 <LayoutDashboard className="w-4 h-4" />
                 <span>{isTeacherOrAdmin ? 'Teacher Portal' : 'My Dashboard'}</span>
@@ -111,7 +122,8 @@ export default async function Navbar() {
                 </span>
               </div>
 
-              <form action={signOutAction} className="shrink-0">
+              {/* Sign out button: hidden on mobile because MobileNav has it */}
+              <form action={signOutAction} className="hidden sm:block shrink-0">
                 <button
                   type="submit"
                   title="Sign Out"
@@ -126,7 +138,7 @@ export default async function Navbar() {
             <div className="flex items-center gap-2 shrink-0">
               <Link
                 href="/sign-in"
-                className="flex items-center gap-1.5 px-3 sm:px-3.5 py-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50/80 rounded-xl transition-colors shrink-0 whitespace-nowrap"
+                className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50/80 rounded-xl transition-colors shrink-0 whitespace-nowrap"
               >
                 <LogIn className="w-4 h-4" />
                 <span>Sign In</span>

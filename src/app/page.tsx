@@ -128,7 +128,7 @@ export default async function HomePage() {
             {/* Right Column: Interactive Today's Challenge Preview Widget */}
             <div className="lg:col-span-5">
               <div className="relative mx-auto max-w-md bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200/80">
-                <div className="absolute -top-4 -right-4 bg-pink-600 text-white text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-1.5">
+                <div className="absolute -top-3 right-3 sm:-top-4 sm:-right-4 bg-pink-600 text-white text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>Daily Habit</span>
                 </div>
