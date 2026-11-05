@@ -151,3 +151,4 @@ export async function deleteSubtopicAction(subtopicId: string): Promise<void> {
   revalidatePath('/admin/topics');
   revalidatePath('/teacher/question-bank/new');
 }
+
