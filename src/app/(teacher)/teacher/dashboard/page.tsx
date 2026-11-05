@@ -68,17 +68,17 @@ export default async function TeacherDashboardPage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Link
               href="/teacher/lessons/new"
-              className="px-4 py-2.5 bg-teal-800 hover:bg-teal-900 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2"
+              className="px-4 py-2.5 bg-teal-800 hover:bg-teal-900 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 shrink-0 whitespace-nowrap"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Create Lesson</span>
             </Link>
             <Link
               href="/teacher/question-bank"
-              className="px-4 py-2.5 bg-pink-600 hover:bg-pink-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2"
+              className="px-4 py-2.5 bg-pink-600 hover:bg-pink-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 shrink-0 whitespace-nowrap"
             >
               <HelpCircle className="w-4 h-4" />
               <span>Question Bank</span>
