@@ -93,3 +93,4 @@ erDiagram
 - **Notification:** `id`, `userId`, `title`, `message`, `linkUrl`, `type` (`COURSE`, `EXAM`, `GRADE`, `CERTIFICATE`, `COMMUNITY`, `SYSTEM`), `isRead`, `createdAt`
 - **SiteSetting:** `id`, `key` (unique), `value` (JSON string), `description`, `updatedAt`
 - **AuditLog:** `id`, `userId`, `action`, `resourceType`, `resourceId`, `metadata` (JSON), `ipAddress`, `createdAt`
+

@@ -54,3 +54,4 @@ export async function requireAdmin(): Promise<UserSession> {
 export async function requireSuperAdmin(): Promise<UserSession> {
   return requireRole([Role.SUPER_ADMIN]);
 }
+

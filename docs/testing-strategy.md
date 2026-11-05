@@ -31,3 +31,4 @@
 6. **Certificate Issuance & Verification:** Student passes course final assessment, server issues verifiable certificate, student views PDF, visitor verifies at `/verify/[code]`.
 7. **Permission Boundary:** Unauthorized student cannot view another student's exam answers or attempt analytics.
 8. **Mobile Learning Experience:** All lesson viewing, quiz taking, and navigation controls render responsively on mobile screen viewports.
+

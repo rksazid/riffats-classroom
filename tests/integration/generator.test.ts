@@ -13,3 +13,4 @@ describe('Daily Grammar Challenge Generator', () => {
     expect(secondCall.isExisting).toBe(true);
   });
 });
+

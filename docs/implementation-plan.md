@@ -69,3 +69,4 @@ flowchart LR
 - **Docker Deployment Setup:** Production-ready `Dockerfile` (multi-stage Next.js standalone runner), `docker-compose.yml` (App + PostgreSQL 16 + Redis 7 + Nginx with SSL configuration), and automated database backup script.
 - **Documentation & Operating Manual:** Admin guides, teacher operating manuals, and disaster recovery procedures.
 - **Acceptance:** 100% typecheck and build pass; passes automated test suite; runs cleanly in both Vercel and Docker environments.
+

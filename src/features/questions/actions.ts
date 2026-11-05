@@ -99,3 +99,4 @@ export async function createQuestionAction(formData: FormData) {
   revalidatePath('/teacher/question-bank');
   redirect('/teacher/question-bank');
 }
+

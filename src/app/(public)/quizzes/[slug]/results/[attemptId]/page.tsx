@@ -189,3 +189,4 @@ export default async function QuizResultsPage({ params }: ResultsPageProps) {
     </div>
   );
 }
+

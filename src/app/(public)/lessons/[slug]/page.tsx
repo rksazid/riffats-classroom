@@ -198,3 +198,4 @@ export default async function LessonDetailPage({ params }: LessonSlugProps) {
     </div>
   );
 }
+

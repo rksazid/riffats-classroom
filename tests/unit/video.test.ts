@@ -20,3 +20,4 @@ describe('Video Embed URL Parser', () => {
     expect(embed).toBe('https://www.loom.com/embed/abc123xyz');
   });
 });
+

@@ -155,3 +155,4 @@ export default async function ForumThreadDetailPage({ params }: ThreadSlugProps)
     </div>
   );
 }
+

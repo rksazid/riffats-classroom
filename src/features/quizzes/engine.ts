@@ -118,3 +118,4 @@ export function evaluateQuestion(q: EvaluatedQuestion): QuestionGradingResult {
     totalPossibleMarks: points,
   };
 }
+

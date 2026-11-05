@@ -136,3 +136,4 @@ interface VideoAsset {
   `Seed = Hash(ScheduleID + DateString + GradeLevel)`
 - Selects the target question count from the approved Question Bank tagged with today's scheduled topic.
 - A database unique constraint `@@unique([scheduleId, date, gradeLevel])` guarantees no duplicate challenges are ever created.
+

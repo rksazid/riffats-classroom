@@ -141,3 +141,4 @@ export async function getOrCreateDailyChallenge(targetDate?: Date): Promise<Gene
     isExisting: false,
   };
 }
+

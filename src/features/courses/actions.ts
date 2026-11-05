@@ -30,3 +30,4 @@ export async function enrollInCourseAction(courseId: string, courseSlug: string)
   revalidatePath('/student/dashboard');
   redirect(`/courses/${courseSlug}`);
 }
+

@@ -5,6 +5,7 @@ import { db } from '@/lib/db';
 import { evaluateQuestion } from './engine';
 import { AttemptStatus } from '@prisma/client';
 import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 export async function startQuizAttemptAction(quizId: string, guestNickname?: string) {
   const user = await getCurrentUser();
@@ -198,3 +199,55 @@ export async function submitQuizAttemptAction(attemptId: string) {
 
   return { attemptId: attempt.id, quizSlug: attempt.quiz.slug };
 }
+
+export async function createQuizAction(formData: FormData) {
+  const user = await getCurrentUser();
+  if (!user) {
+    redirect('/sign-in');
+  }
+
+  const title = (formData.get('title') as string)?.trim();
+  const description = (formData.get('description') as string)?.trim();
+  const topicId = formData.get('topicId') as string;
+  const durationMinutes = formData.get('durationMinutes')
+    ? parseInt(formData.get('durationMinutes') as string)
+    : null;
+  const passingScorePercent = parseFloat(formData.get('passingScorePercent') as string) || 60.0;
+  const accessMode = (formData.get('accessMode') as any) || 'PUBLIC_GUEST';
+  const selectedQuestionIds = formData.getAll('questionIds') as string[];
+
+  if (!title || selectedQuestionIds.length === 0) {
+    throw new Error('Title and at least one selected question are required.');
+  }
+
+  const topic = await db.topic.findUnique({ where: { id: topicId } });
+  const slug = `${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 50)}-${Date.now()}`;
+
+  const quiz = await db.quiz.create({
+    data: {
+      title,
+      slug,
+      description,
+      subjectId: topic?.subjectId || (await db.subject.findFirst())!.id,
+      topicId: topicId || null,
+      authorId: user.id,
+      durationMinutes,
+      passingScorePercent,
+      accessMode,
+      isPublished: true,
+      questions: {
+        create: selectedQuestionIds.map((qId, idx) => ({
+          questionId: qId,
+          points: 1.0,
+          orderIndex: idx + 1,
+        })),
+      },
+    },
+  });
+
+  revalidatePath('/quizzes');
+  revalidatePath('/teacher/quizzes');
+  redirect(`/teacher/quizzes`);
+}
+
+

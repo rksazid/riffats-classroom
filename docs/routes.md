@@ -90,3 +90,4 @@
 | `/api/certificates/[id]/pdf`| GET | Generate and stream high-quality PDF certificate. |
 | `/api/quizzes/[id]/autosave`| POST | Server-authoritative autosave for assessment attempt answers. |
 | `/api/quizzes/[id]/submit` | POST | Finalize exam attempt and calculate server-side grade. |
+

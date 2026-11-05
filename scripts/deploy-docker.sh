@@ -26,3 +26,4 @@ docker compose exec app npx tsx prisma/seed.ts || echo "Seed completed or skippe
 
 echo "✅ Riffat's Classroom is live and serving traffic!"
 docker compose ps
+

@@ -80,3 +80,4 @@ sudo apt-get install -y certbot python3-certbot-nginx
 sudo certbot --nginx -d yourdomain.com
 ```
 Certbot will automatically install SSL certificates and configure HTTPS redirects.
+

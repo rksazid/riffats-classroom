@@ -76,3 +76,4 @@ The file `vercel.json` automatically registers the cron job:
 }
 ```
 Vercel will trigger `/api/cron/daily-challenge` every day at midnight UTC (6:00 AM Asia/Dhaka), generating that day's scheduled Grammar Challenge idempotently.
+

@@ -59,3 +59,4 @@ Riffat's Classroom is a production-grade, database-backed educational web applic
    - In-app notification center + email delivery integration.
 10. **Teacher & Administrator Dashboards:**
     - Full LMS operations, analytics charts (Recharts), question bank manager, quiz builder, enrollment manager, grading queue, site settings editor, audit logs.
+

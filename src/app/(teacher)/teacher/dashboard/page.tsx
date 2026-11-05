@@ -273,3 +273,4 @@ export default async function TeacherDashboardPage() {
     </div>
   );
 }
+

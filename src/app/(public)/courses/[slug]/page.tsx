@@ -194,3 +194,4 @@ export default async function CourseDetailPage({ params }: CourseSlugProps) {
     </div>
   );
 }
+

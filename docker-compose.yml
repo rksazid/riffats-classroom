@@ -77,3 +77,4 @@ volumes:
 networks:
   riffats_network:
     driver: bridge
+
