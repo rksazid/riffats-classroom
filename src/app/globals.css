@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    
+    --brand-pink: #ec4899;
+    --brand-pink-hover: #db2777;
+    --brand-pink-light: #fdf2f8;
+    
+    --brand-teal: #0c4a4e;
+    --brand-teal-dark: #072b2e;
+    --brand-teal-light: #115e59;
+    
+    --brand-aqua: #14b8a6;
+    --brand-aqua-light: #f0fdfa;
+    
+    --accent-coral: #f97316;
+    --accent-yellow: #facc15;
+    --accent-green: #10b981;
+    
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --border: #e2e8f0;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: #071f22;
+    --foreground: #f8fafc;
+    --card: #0c2b2e;
+    --card-foreground: #f8fafc;
+    --border: #134e4a;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom educational animations and gradients */
+.brand-gradient {
+  background: linear-gradient(135deg, #0c4a4e 0%, #115e59 50%, #072b2e 100%);
+}
+
+.brand-pink-gradient {
+  background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+}
+
+.card-hover-lift {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -10px rgba(12, 74, 78, 0.12);
+}
+
+/* Accessibility focus ring */
+:focus-visible {
+  outline: 2px solid var(--brand-pink);
+  outline-offset: 2px;
+}

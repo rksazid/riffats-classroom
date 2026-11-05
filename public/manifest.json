@@ -1,0 +1,18 @@
+{
+  "name": "Riffat's Classroom",
+  "short_name": "Riffat's LMS",
+  "description": "Learn English. Build Confidence. Shine Brighter.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c4a4e",
+  "theme_color": "#0c4a4e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "500x500",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
