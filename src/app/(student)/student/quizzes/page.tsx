@@ -152,3 +152,4 @@ export default async function StudentQuizzesPage() {
     </div>
   );
 }
+

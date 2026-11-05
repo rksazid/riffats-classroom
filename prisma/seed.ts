@@ -443,7 +443,24 @@ async function main() {
     data: {
       courseId: foundationCourse.id,
       userId: studentAbrar.id,
-      status: 'ACTIVE'
+      status: 'COMPLETED'
+    }
+  });
+
+  const certTemplate = await prisma.certificateTemplate.findFirst({
+    where: { courseId: foundationCourse.id }
+  });
+
+  await prisma.certificate.create({
+    data: {
+      certificateNumber: 'RC-2026-0001',
+      verificationCode: 'RC-2026-EN-001',
+      userId: studentAbrar.id,
+      courseId: foundationCourse.id,
+      templateId: certTemplate?.id,
+      studentName: 'Abrar Zahin',
+      courseTitle: 'Mastering English Sentences & Grammar Foundations',
+      issuedAt: new Date('2026-10-15T10:00:00Z'),
     }
   });
 
